@@ -57,6 +57,9 @@ def create_app():
             return render_template("index.html")
         else:
             playlist_id = request.form.get("playlist_id")
-            data = days_hours_minutes_seconds(getTotalDuration(playlist_id))
-            return render_template("index.html", data=data)
+            try:
+                data = days_hours_minutes_seconds(getTotalDuration(playlist_id))
+                return render_template("index.html", data=data)
+            except:
+                return render_template("index.html", data="Enter the Playlist ID only")
     return app
