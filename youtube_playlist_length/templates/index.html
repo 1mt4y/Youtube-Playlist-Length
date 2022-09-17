@@ -7,6 +7,13 @@
     <title>Document</title>
 </head>
 <body>
-    <h>sup</h>
+    <form action="/" method="post">
+        <label for="playlist_id">Playlist ID: </label>
+        <input type="text" name="playlist_id" id="playlist_id">
+        <input type="submit" value="Get Length">
+    </form>
+    {% if data %}
+    <h1>{{ data }}</h1>
+    {% endif %}
 </body>
 </html>

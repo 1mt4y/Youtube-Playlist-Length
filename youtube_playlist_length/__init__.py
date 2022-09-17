@@ -5,6 +5,8 @@ import googleapiclient.discovery
 from flask import Flask, Response, request, render_template
 
 def getTotalDuration(playlistId):
+    DEVELOPER_KEY = os.getenv('API_KEY') 
+
     api_service_name = "youtube"
     api_version = "v3"
     youtube = googleapiclient.discovery.build(api_service_name, api_version, developerKey = DEVELOPER_KEY)
@@ -48,10 +50,13 @@ def days_hours_minutes_seconds(td):
 
 def create_app():
     app = Flask(__name__)
-    DEVELOPER_KEY = os.getenv('API_KEY') 
 
     @app.route("/", methods=['GET', 'POST'])
     def home():
         if(request.method == 'GET'):
             return render_template("index.html")
+        else:
+            playlist_id = request.form.get("playlist_id")
+            data = days_hours_minutes_seconds(getTotalDuration(playlist_id))
+            return render_template("index.html", data=data)
     return app
