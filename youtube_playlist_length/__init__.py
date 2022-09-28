@@ -1,8 +1,8 @@
-import os, isodate
+import os, isodate, re
 from datetime import timedelta
 
 import googleapiclient.discovery
-from flask import Flask, Response, request, render_template
+from flask import Flask, request, render_template
 
 def getTotalDuration(playlistId):
     DEVELOPER_KEY = os.getenv('API_KEY') 
@@ -48,6 +48,14 @@ def days_hours_minutes_seconds(td):
         (td.seconds//60)%60,
         td.seconds % 60)
 
+def parse_playlist(playlist_link):
+    p = re.compile('^([\S]+list=)?([\w_-]+)[\S]*$')
+    m = p.match(playlist_link)
+    if m:
+        return m.group(2)
+    else:
+        return 'invalid_playlist_link'
+
 def create_app():
     app = Flask(__name__)
 
@@ -56,10 +64,10 @@ def create_app():
         if(request.method == 'GET'):
             return render_template("index.html")
         else:
-            playlist_id = request.form.get("playlist_id")
+            playlist_id = parse_playlist(request.form.get("playlist_id"))
             try:
                 data = days_hours_minutes_seconds(getTotalDuration(playlist_id))
                 return render_template("index.html", data=data)
             except:
-                return render_template("index.html", data="Enter the Playlist ID only")
+                return render_template("index.html", data="Invalid URL Format.")
     return app
