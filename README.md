@@ -9,4 +9,4 @@ Simple Flask Web Application to Get The Total Duration of A YouTube Playlist in 
 
 # Todo
 - Add styling or use bootstrap
-- Parse Playlist link (done a tayeb)
+- Parse Playlist link (wlh done a tayeb)
