@@ -64,11 +64,9 @@ def create_app():
         if(request.method == 'GET'):
             return render_template("index.html")
         else:
-            # playlist_id = parse_playlist(request.form.get("playlist_id"))
-            playlist_id = request.form.get("playlist_id")
+            playlist_id = parse_playlist(request.form.get("playlist_id"))
             try:
                 data = days_hours_minutes_seconds(getTotalDuration(playlist_id))
-                print(data)
                 return render_template("index.html", data=data)
             except:
                 return render_template("index.html", data="Invalid URL Format.")
