@@ -46,16 +46,27 @@ body::before {
     height: 2.5rem;
     font-size:1rem;
     font-weight: 300;
-    padding-left: 1rem;
+    padding: 3px 3px 3px 19px;
     outline: none;
     border: none;
     border-radius: .5rem;
     border: black 1px solid;
     transition: .05s;
+    position: relative;
 }
+
+/* .form-input::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: blue;
+    z-index: 5;
+    border: 3px solid red;
+} */
 
 .form-input:focus {
     border:black 3px solid ;
+    padding: 0 0 0 16px;
     transition: .05s;
 }
 
