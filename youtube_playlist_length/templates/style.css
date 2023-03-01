@@ -1,12 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        * {
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -41,7 +33,6 @@ body::before {
     flex-direction: column;
     gap: .75rem;
     width: 25rem;
-    margin-bottom: 5rem;
 }
 
 .form-label {
@@ -109,19 +100,3 @@ body::before {
     transform: translate(-50%,-50%);
     z-index: -2;
 } */
-    </style>
-    <title>Playlist Length Checker</title>
-</head>
-<body>
-    <form class="form" action="/" method="post">
-        <label class="form-label" for="playlist_id">Playlist Link </label>
-        <input class="form-input" type="text" name="playlist_id" id="playlist_id" placeholder="https://www.youtube.com/list=RDQMgEzdN5R...`">
-        <input class="form-button" type="submit" value="Get Length">
-    </form>
-    <div>
-
-    </div>
-    {% if data %}
-    <h1>{{ data }}</h1>
-    {% endif %}
-</body>
