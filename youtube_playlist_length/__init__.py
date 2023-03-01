@@ -65,9 +65,12 @@ def create_app():
             return render_template("index.html")
         else:
             playlist_id = parse_playlist(request.form.get("playlist_id"))
-            try:
-                data = days_hours_minutes_seconds(getTotalDuration(playlist_id))
-                return render_template("index.html", data=data)
-            except:
+            if playlist_id != "invalid_playlist_link":
+                try:
+                    data = days_hours_minutes_seconds(getTotalDuration(playlist_id))
+                    return render_template("index.html", data=data)
+                except:
+                    return render_template("index.html", data="Error Fetching Length.")
+            else:
                 return render_template("index.html", data="Invalid URL Format.")
     return app
